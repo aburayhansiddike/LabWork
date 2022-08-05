@@ -32,7 +32,7 @@ public class StudentList {
             }
             System.out.println(allString.printingDataLoaded);
         } else if (args[0].contains(allString.argumentForInsertStudent)) {
-            System.out.println(allString.printingDataLoaded);
+
             try {
                 BufferedWriter bufferedWriter = new BufferedWriter(new FileWriter(allString.fileNameOfStudentNamesList, true));
                 String studentName = args[0].substring(1);
@@ -40,8 +40,39 @@ public class StudentList {
                 String dateFormat = allString.dateFormat;
                 DateFormat convertDateFormat = new SimpleDateFormat(dateFormat);
                 String fd = dateFormat.format(dateFormat);
-                bufferedWriter.write(allString.getCommaCharacterWithSpace + studentName + allString.printUpdate + fd);
+
+                BufferedReader bufferedReader = new BufferedReader(new InputStreamReader(new FileInputStream(allString.fileNameOfStudentNamesList)));
+
+                String lineOfStudentNames = bufferedReader.readLine();
+                String splitStudentName[] = lineOfStudentNames.split(allString.commaCharacter);
+                ArrayList<String> arrayList = new ArrayList<>() ;
+                for(String it : splitStudentName){
+                        String name = it ;
+                        arrayList.add(name) ;
+                }
+                arrayList.add(studentName) ;
+                for(String name : arrayList){
+                    System.out.println(name);
+                }
+
+                FileWriter fileWriter = new FileWriter(allString.fileNameOfStudentNamesList, false);
+                PrintWriter printWriter = new PrintWriter(fileWriter, false);
+                printWriter.flush();
+                printWriter.close();
+                fileWriter.close();
+
+                for(int i = 0  ; i < arrayList.size() ; i += 1){
+                        if(i == 0){
+                               bufferedWriter.write(arrayList.get(i));
+                        }else{
+                              bufferedWriter.write(allString.commaCharacter + arrayList.get(i)) ;
+                        }
+
+                }
+                bufferedWriter.write(allString.printUpdate + fd);
+                bufferedReader.close();
                 bufferedWriter.close();
+
             } catch (Exception e) {
 
             }
@@ -71,16 +102,9 @@ public class StudentList {
             try {
                 BufferedReader bufferedReader = new BufferedReader(new InputStreamReader(new FileInputStream(allString.fileNameOfStudentNamesList)));
                 String lineOfStudentName = bufferedReader.readLine();
-                char charArray[] = lineOfStudentName.toCharArray();
-                boolean in_word = false;
-                int spaceCount = 0;
-                for (char space : charArray) {
-                    if (space == ' ') {
-                        spaceCount = spaceCount + 1;
-                    }
-                }
-                int totalWord = spaceCount + 1 ;
-                System.out.println(totalWord + allString.printWordsFound);
+                String splitStudentName[] = lineOfStudentName.split(allString.commaCharacter);
+
+                System.out.println( splitStudentName.length + allString.printWordsFound);
             } catch (Exception e) {
             }
         }else{

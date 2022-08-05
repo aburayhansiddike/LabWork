@@ -10,7 +10,7 @@ public class AllString {
     public String getCommaCharacterWithSpace = ", " ;
     public String printingDataLoaded = "Data Loaded." ;
     public String dateFormat = "dd/mm/yyyy-hh:mm:ss a" ;
-    public String printUpdate = "\nist last updated on" ;
+    public String printUpdate = "\nlist last updated on " ;
     public String printSpace = " " ;
     public String printWeFoundIt = "We found it!" ;
     public String printWordsFound = " word(s) found ";
