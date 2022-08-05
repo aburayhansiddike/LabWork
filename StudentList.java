@@ -26,9 +26,8 @@ public class StudentList {
                 BufferedReader bufferedReader = new BufferedReader(new InputStreamReader(new FileInputStream(allString.fileNameOfStudentNamesList)));
                 String lineOfStudentNames = bufferedReader.readLine();
                 String splitStudentName[] = lineOfStudentNames.split(allString.commaCharacter);
-                Random random = new Random();
-                int randomValue = random.nextInt(splitStudentName.length) ;
-                System.out.println(splitStudentName[randomValue]);
+                Random random = new Random() ;
+                System.out.println(splitStudentName[random.nextInt(splitStudentName.length)]);
             } catch (Exception e) {
             }
             System.out.println(allString.printingDataLoaded);
@@ -50,19 +49,19 @@ public class StudentList {
         } else if (args[0].contains(allString.argumentForFindingStudentName)) {
             System.out.println(allString.printingDataLoaded);
             try {
-                BufferedReader bufferedReader = new BufferedReader(new InputStreamReader(new FileInputStream("students.txt")));
+                BufferedReader bufferedReader = new BufferedReader(new InputStreamReader(new FileInputStream(allString.fileNameOfStudentNamesList)));
                 String lineOfStudentNames = bufferedReader.readLine();
                 String splitStudentName[] = lineOfStudentNames.split(allString.commaCharacter);
-                boolean done = false;
                 String findName = args[0].substring(1);
                 findName = allString.printSpace + findName ;
+                int numberOfStudent = 0 ;
                 System.out.println(findName);
-                for (int idex = 0; idex < splitStudentName.length && !done; idex++) {
+                for (int idex = 0; idex < splitStudentName.length ; idex++) {
                     if (splitStudentName[idex].equals(findName)) {
-                        System.out.println(allString.printWeFoundIt);
-                        done = true;
+                           numberOfStudent = numberOfStudent + 1 ;
                     }
                 }
+                System.out.println("The number of name ( " + findName + ") is " + numberOfStudent);
             } catch (Exception e) {
 
             }
