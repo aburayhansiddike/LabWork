@@ -102,12 +102,13 @@ public class StudentList {
             try {
                 BufferedReader bufferedReader = new BufferedReader(new InputStreamReader(new FileInputStream(allString.fileNameOfStudentNamesList)));
                 String lineOfStudentName = bufferedReader.readLine();
-                String splitStudentName[] = lineOfStudentName.split(allString.commaCharacter);
 
+                /* count the number of student by string array length */
+                String splitStudentName[] = lineOfStudentName.split(allString.commaCharacter);
                 System.out.println( splitStudentName.length + allString.printWordsFound);
             } catch (Exception e) {
             }
-        }else{
+        }else{ /* handling the worg argument */
              System.out.println(allString.printWrongArgument);
         }
     }
